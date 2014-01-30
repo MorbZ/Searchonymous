@@ -2,8 +2,8 @@
   "name": "searchonymous",
   "title": "Searchonymous",
   "id": "jid1-WF1v8esuNM9pRg",
-  "description": "a basic add-on",
-  "author": "",
+  "description": "Search anonymously on Google, while keeping your search preferences and stay logged in on services such as Youtube, Gmail, etc.",
+  "author": "MorbZ",
   "license": "MPL 2.0",
-  "version": "0.1"
+  "version": "1.0"
 }
