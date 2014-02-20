@@ -1,0 +1,10 @@
+Suche anonym auf Google, während deine Sucheinstellungen bestehen bleiben und du weiterhin bei Youtube, Gmail, usw. eingeloggt bleibst.
+
+
+Searchonymous hilft dir dabei zu verhindern, dass deine Google Suchen von Google oder der NSA getrackt werden können. Wenn es installiert ist werden beim Suchen keine Tracking-Cookies mehr an Google gesendet. Dies geschieht dadurch, dass bestimmte Google Cookies geblockt werden (z.B. PREF-ID) oder Zufällige generiert werden (die fürs Tracking wertlos sind). Andere Cookies, die nur deine Sucheinstellungen enthalten werden erlaubt, wodurch deine Sucheinstellungen bestehen bleiben. Du wirst weiterhin auf anderen Google Services wie Youtube oder Gmail eingeloggt bleiben. Außerdem werden Werbung und andere Meldungen von der Google Startseite entfernt, die normalerweise angezeigt werden, wenn Cookies deaktiviert sind.
+
+Bitte beachte, dass die NSA dich möglicherweise auch mit anderen Methoden tracken kann, auch wenn Tracking-Cookies geblockt werden (z.B. mit IP oder Browser-Headern), aber diese Methoden sind nicht so genau wie Tracking-IDs, die bei jeder Suche mitgeschickt werden.
+
+--------------------------
+<a href="https://github.com/MorbZ/Searchonymous">Project auf Github</a>
+Dieses Addon benutzt Code des großartigen <a href="https://addons.mozilla.org/de/firefox/addon/no-cookie-for-google-search/">No cookie for Google search</a> Addons.
