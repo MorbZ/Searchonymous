@@ -1,7 +1,13 @@
 //is blacklisted url?
-let blacklist = /^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/?[^\/]*$/i;
+let blacklist = [
+	//Google search page
+	/^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/?[^\/]*$/i,
+	
+	//Google autocomplete
+	/^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/complete\/.*$/i,
+];
 function isBlacklisted(url) {
-	return blacklist.test(url.spec);
+	return testRegexAry(blacklist, url.spec);
 }
 exports.isBlacklisted = isBlacklisted;
 
