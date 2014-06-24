@@ -2,5 +2,5 @@ Searchonymous helps to prevent your Google searches from tracking by Google or t
 
 Please note that even if no tracking cookies are sent the NSA can possibly try other techniques to track you (e.g. by IP or browser headers) but these are not as accurate as tracking IDs that are sent on every search.
 
-* [Firefox add-on page](https://addons.mozilla.org/de/firefox/addon/searchonymous/)
+* [Firefox add-on page](https://addons.mozilla.org/firefox/addon/searchonymous/)
 * This addon uses code from the great [No cookie for Google search](https://addons.mozilla.org/de/firefox/addon/no-cookie-for-google-search) addon.
