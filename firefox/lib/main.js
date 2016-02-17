@@ -1,50 +1,37 @@
-//import custom modules
-let observer = require("observer");
-let cook = require("cookie");
-let urls = require("urls");
+// Import custom modules
+let observer = require("./observer");
+let urls = require("./urls");
 
-//create observer
+// Create observer
 observer.createObserver(observe);
 
-//observe http modify request
+// Observe HTTP modify request
 function observe(httpChannel) {
-	var url = httpChannel.URI;
-	
-	//check blacklist
-	if(!urls.isBlacklisted(url)) {
+	var url = httpChannel.URI.spec;
+
+	// Check if Google search URL
+	if(!urls.isSearchUrl(url)) {
 		return;
 	}
 
-	//check whitelist
-	if(urls.isWhitelisted(url)) {
-		return;
-	}
-
-	//set cleaned cookie
-	try {
-		var cookie = httpChannel.getRequestHeader("Cookie");
-	} catch(e) {}
-	if(cookie != undefined) {
-		cookie = cook.cleanCookie(cookie);
-		httpChannel.setRequestHeader("Cookie", cookie, false);
-	}
+	// Remove cookie from headers
+	httpChannel.setRequestHeader("Cookie", "", false);
 }
 
-//load
+// Addon load
 exports.main = function() {
 	observer.register();
 };
 
-//unload
+// Addon unload
 exports.onUnload = function() {
 	observer.unregister();
 }
 
-//get rid of page decoration and change country name to anonymous
+// Remove cookie/privacy hints that would popup on every page visit otherwise
 let data = require("sdk/self").data;
 require("sdk/page-mod").PageMod({
 	include: /^https?:\/\/((www|encrypted)\.)?google\..*/,
 	contentScriptWhen: "ready",
-	contentStyleFile: data.url("google.css"),
-	contentScriptFile: data.url("google.js")
+	contentStyleFile: data.url("google.css")
 });

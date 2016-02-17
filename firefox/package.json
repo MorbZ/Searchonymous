@@ -1,9 +1,10 @@
 {
   "name": "searchonymous",
   "title": "Searchonymous",
-  "id": "jid1-WF1v8esuNM9pRg",
-  "description": "Search anonymously on Google, while keeping your search preferences and stay logged in on services such as Youtube, Gmail, etc.",
+  "id": "jid1-WF1v8esuNM9pRg@jetpack",
+  "description": "Search anonymously on Google while staying logged in on services such as Youtube, Gmail, etc.",
   "author": "MorbZ",
   "license": "MPL 2.0",
-  "version": "1.0.3"
+  "version": "1.0.5",
+  "main": "lib/main.js"
 }
