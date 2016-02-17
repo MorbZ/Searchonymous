@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "Searchonymous",
+	"version": "1.0.5",
+	"description": "__MSG_appDesc__",
+	"default_locale": "en",
+	"icons": {
+		"128": "icon128.png"
+	},
+	"permissions": [
+		"tabs",
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"background": {
+		"scripts": [ "background.js" ]
+	}
+}

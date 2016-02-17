@@ -1,0 +1,7 @@
+#epbar,
+#pmocntr2,
+#cnsh, /* Privacy hint on Google homepage */
+#cnso /* Privacy hint ontop of search results */
+{
+	display: none !important;
+}
