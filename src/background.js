@@ -23,26 +23,52 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	]
 );
 
-// Remove cookie from headers
+// Change response cookies
 function onBeforeHeaders(details) {
 	// Check if Google search URL
 	if(!isSearchUrl(details.url)) {
 		return;
 	}
 
-	// Get Cookie
-	var headers = details.requestHeaders;
-	for(var i = 0; i < headers.length; i++) {
-		if(headers[i].name == 'Cookie') {
-			// Remove cookies
-			headers.splice(i, 1);
+	// Remove unwanted cookies
+	let headers = details.requestHeaders;
+	changeCookieHeader(headers);
+	return {
+		requestHeaders: headers
+	};
+}
 
-			// Return new headers
-			return {
-				requestHeaders: headers
-			};
+/* Cookies */
+function changeCookieHeader(headers) {
+	// Get cookie header
+	let c = getHeader(headers, 'Cookie');
+	if(c.i == -1) {
+		return;
+	}
+
+	// Only use whitelisted cookie names
+	let parts = c.v.split('; ');
+	let newParts = [];
+	for(let part of parts) {
+		if(part.startsWith('NID=') || part.startsWith('CONSENT=')) {
+			newParts.push(part);
 		}
 	}
+
+	// Combine cookie
+	headers[c.i].value = newParts.join('; ');
+}
+
+// Returns an object where i is header index and v is the header value. If the
+// header does not exist, i will be -1.
+function getHeader(headers, name) {
+    name = name.toLowerCase();
+    for(let i in headers) {
+        if(headers[i].name.toLowerCase() == name) {
+            return {i: i, v: headers[i].value};
+        }
+    }
+    return {i: -1, v: ''};
 }
 
 /* URLs */
@@ -63,7 +89,7 @@ function isSearchUrl(url) {
 // Is blacklisted URL?
 let urlBlacklist = [
 	//Google search page
-	/^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/?[^\/]*$/i,
+	/^https?:\/\/((search|www|encrypted)\.)?google\./i,
 
 	//Google autocomplete
 	/^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/complete\/.*$/i,
