@@ -11,16 +11,22 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	}
 });
 
+// For Chrome we have to use "extraHeaders" to get the cookie header
+let extraInfoSpec = [
+	'blocking',
+	'requestHeaders',
+];
+if (chrome.webRequest.OnBeforeSendHeadersOptions.hasOwnProperty('EXTRA_HEADERS')) {
+	extraInfoSpec.push('extraHeaders');
+}
+
 // Register header event listener
 chrome.webRequest.onBeforeSendHeaders.addListener(
 	onBeforeHeaders,
 	{
 		urls: ['<all_urls>']
 	},
-	[
-		'requestHeaders',
-		'blocking'
-	]
+	extraInfoSpec,
 );
 
 // Change response cookies
