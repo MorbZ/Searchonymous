@@ -1,15 +1,4 @@
-"use strict";
-
-// We can't use a content-script since URL-regexes don't allow checking for wildcard TLDs
-let contentPattern = /^https?:\/\/((www|encrypted)\.)?google\..*/;
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	if(contentPattern.test(tab.url)) {
-		// Remove cookie/privacy hints that would popup on every page visit otherwise
-		chrome.tabs.insertCSS(tabId, {
-			file: 'google.css'
-		});
-	}
-});
+'use strict';
 
 // For Chrome we have to use "extraHeaders" to get the cookie header
 let extraInfoSpec = [
@@ -119,8 +108,7 @@ function isWhitelisted(url) {
 
 // Test regex array on given string
 function testRegexAry(ary, string) {
-	for(var key in ary) {
-		var pattern = ary[key];
+	for(let pattern of ary) {
 		if(pattern.test(string)) {
 			return true;
 		}
