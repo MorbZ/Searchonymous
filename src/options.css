@@ -1,0 +1,28 @@
+body {
+	font-family: sans-serif;
+}
+
+div.wrapper {
+	padding: 10px 20px;
+}
+
+p.header {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+div.option {
+	border: 1px solid #b9b1b1;
+	border-radius: 4px;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+
+h2 {
+	margin-top: 0;
+}
+
+label {
+	font-weight: bold;
+	font-size: 1.1em;
+}

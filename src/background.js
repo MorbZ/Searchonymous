@@ -1,69 +1,104 @@
 'use strict';
 
-// For Chrome we have to use "extraHeaders" to get the cookie header
-let extraInfoSpec = [
-	'blocking',
-	'requestHeaders',
+(function start() {
+	getWhitelist((whitelist) => {
+		// Listen for changed settings
+		chrome.runtime.onMessage.addListener((msg) => {
+			if(msg.action !== undefined && msg.action == 'settingsChanged') {
+				getWhitelist((wl) => {
+					whitelist = wl;
+				});
+			}
+		});
+
+		// Register header event listener
+		// For Chrome we have to use "extraHeaders" to get the cookie header
+		let extraInfoSpec = [
+			'blocking',
+			'requestHeaders',
+		];
+		if(chrome.webRequest.OnBeforeSendHeadersOptions.hasOwnProperty('EXTRA_HEADERS')) {
+			extraInfoSpec.push('extraHeaders');
+		}
+		chrome.webRequest.onBeforeSendHeaders.addListener(
+			(details) => {
+				// Check if Google search URL
+				if(!isSearchUrl(details.url)) {
+					return;
+				}
+
+				// Get cookie header
+				let headers = details.requestHeaders;
+				let c = getHeader(headers, 'Cookie');
+				if(c.i == -1) {
+					return;
+				}
+
+				// Remove unwanted cookies
+				headers[c.i].value = getWhitelistedCookies(c.v, whitelist);
+				return {
+					requestHeaders: headers
+				};
+			},
+			{
+				urls: ['<all_urls>']
+			},
+			extraInfoSpec,
+		);
+	});
+})();
+
+/* Settings */
+let cookieSettingNames = [
+	['allowNid', 'NID'],
+	['allowConsent', 'CONSENT'],
 ];
-if (chrome.webRequest.OnBeforeSendHeadersOptions.hasOwnProperty('EXTRA_HEADERS')) {
-	extraInfoSpec.push('extraHeaders');
-}
 
-// Register header event listener
-chrome.webRequest.onBeforeSendHeaders.addListener(
-	onBeforeHeaders,
-	{
-		urls: ['<all_urls>']
-	},
-	extraInfoSpec,
-);
-
-// Change response cookies
-function onBeforeHeaders(details) {
-	// Check if Google search URL
-	if(!isSearchUrl(details.url)) {
-		return;
-	}
-
-	// Remove unwanted cookies
-	let headers = details.requestHeaders;
-	changeCookieHeader(headers);
-	return {
-		requestHeaders: headers
-	};
+// Load whitelist from storage
+function getWhitelist(callback) {
+	let settings = new Settings();
+	settings.load(() => {
+		let whitelist = [];
+		for(const [setting, cookie] of cookieSettingNames) {
+			if(settings.get(setting) == 1) {
+				whitelist.push(cookie);
+			}
+		}
+		callback(whitelist);
+	});
 }
 
 /* Cookies */
-function changeCookieHeader(headers) {
-	// Get cookie header
-	let c = getHeader(headers, 'Cookie');
-	if(c.i == -1) {
-		return;
+function getWhitelistedCookies(cookies, whitelist) {
+	// Check for empty whitelist
+	if(whitelist.length == 0) {
+		return '';
 	}
 
-	// Only use whitelisted cookie names
-	let parts = c.v.split('; ');
+	// Split cookies and check each name (case sensitive)
+	let parts = cookies.split('; ');
 	let newParts = [];
 	for(let part of parts) {
-		if(part.startsWith('NID=') || part.startsWith('CONSENT=')) {
-			newParts.push(part);
+		for(let cookie of whitelist) {
+			if(part.startsWith(cookie+'=')) {
+				newParts.push(part);
+				break;
+			}
 		}
 	}
-
-	// Combine cookie
-	headers[c.i].value = newParts.join('; ');
+	return newParts.join('; ');
 }
 
 // Returns an object where i is header index and v is the header value. If the
 // header does not exist, i will be -1.
 function getHeader(headers, name) {
-    name = name.toLowerCase();
-    for(let i in headers) {
-        if(headers[i].name.toLowerCase() == name) {
-            return {i: i, v: headers[i].value};
-        }
-    }
-    return {i: -1, v: ''};
+	name = name.toLowerCase();
+	for(let i in headers) {
+		if(headers[i].name.toLowerCase() == name) {
+			return {i: i, v: headers[i].value};
+		}
+	}
+	return {i: -1, v: ''};
 }
 
 /* URLs */
