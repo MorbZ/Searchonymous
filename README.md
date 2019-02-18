@@ -1,3 +1,7 @@
+# Searchonymous
+
+![Travis Build](https://api.travis-ci.org/MorbZ/Searchonymous.svg?branch=master) 
+
 Searchonymous helps to prevent your Google searches from tracking by Google or intelligence. When installed no tracking cookies are sent to Google while searching. You will stay logged in on other Google services such as Youtube or Gmail. It also removes privacy and cookie hints from the Google search page since those would pop up on every page visit otherwise.
 
 In previous versions it was possible to keep your search settings when using this addon. However, Google changed their method of saving the settings. This means it is no longer possible to keep your search settings while beeing anonymized.
