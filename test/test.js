@@ -196,8 +196,13 @@ describe('Google search URL', () => {
 			'https://search.google.com/_/SearchConsoleAggReportUi/mutate?ds.extension=123&sid=123',
 			false,
 		],
+		[
+			'Async',
+			'https://www.google.com/async/irc?q=asdd&async=iu:0,_id:irc_async,_pms:s,_fmt:pc',
+			true,
+		],
 	];
-	
+
 	for(let test of tests) {
 		it(test[0], () => {
 			assert.equal(searchonymous.isSearchUrl(test[1]), test[2]);

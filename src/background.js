@@ -173,6 +173,11 @@ function isSearchUrl(url) {
 			return true;
 		}
 	}
+
+	// Async
+	if(firstComp == 'async' && lastComp == 'irc') {
+		return true;
+	}
 	return false;
 }
 
