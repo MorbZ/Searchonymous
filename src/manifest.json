@@ -8,6 +8,16 @@
 	"icons": {
 		"128": "icon128.png"
 	},
+	"background": {
+		"scripts": [
+			"settings.js",
+			"background.js",
+			"start.js"
+		]
+	},
+	"options_ui": {
+		"page": "options.html"
+	},
 	"permissions": [
 		"webRequest",
 		"webRequestBlocking",
@@ -205,14 +215,5 @@
 		"*://*.google.co.zm/*",
 		"*://*.google.co.zw/*",
 		"*://*.google.cat/*"
-	],
-	"background": {
-		"scripts": [
-			"settings.js",
-			"background.js"
-		]
-	},
-	"options_ui": {
-		"page": "options.html"
-	}
+	]
 }

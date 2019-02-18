@@ -1,6 +1,6 @@
 'use strict';
 
-(function start() {
+function start() {
 	getWhitelist((whitelist) => {
 		// Listen for changed settings
 		chrome.runtime.onMessage.addListener((msg) => {
@@ -46,7 +46,7 @@
 			extraInfoSpec,
 		);
 	});
-})();
+};
 
 /* Settings */
 let cookieSettingNames = [
@@ -149,4 +149,9 @@ function testRegexAry(ary, string) {
 		}
 	}
 	return false;
+}
+
+// Make functions available for tests
+if(typeof(module) !== 'undefined') {
+	module.exports.getWhitelistedCookies = getWhitelistedCookies;
 }
