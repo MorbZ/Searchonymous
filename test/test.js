@@ -48,3 +48,159 @@ describe('Whitelist Cookie', () => {
 		});
 	}
 });
+
+describe('Google search URL', () => {
+	let tests = [
+		/*[
+			Name,
+			URL,
+			Is Google search URL,
+		],*/
+		[
+			'Homepage',
+			'https://www.google.com/',
+			true,
+		],
+		[
+			'Homepage',
+			'https://video.google.com/webhp?asd',
+			true,
+		],
+		[
+			'Homepage False',
+			'https://video.google.com/webhptest?asd',
+			false,
+		],
+		[
+			'Homepage',
+			'http://google.com',
+			true,
+		],
+		[
+			'Search',
+			'https://www.google.com/search?q=adads',
+			true,
+		],
+		[
+			'Search',
+			'https://www.google.com/search/?q=adads',
+			true,
+		],
+		[
+			'Search False',
+			'https://www.google.com/searchtest?q=adads',
+			false,
+		],
+		[
+			'Images Home',
+			'https://images.google.com/',
+			true,
+		],
+		[
+			'Images Autocomplete',
+			'https://images.google.com/complete/search?q=asd&psi=123',
+			true,
+		],
+		[
+			'Favicon',
+			'https://www.google.com/favicon.ico',
+			false,
+		],
+		[
+			'Consent',
+			'https://consent.google.com/status?continue=https://www.google.com&pc=s&timestamp=123&gl=DE',
+			false,
+		],
+		[
+			'Image',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:asd-asd',
+			false,
+		],
+		[
+			'Asset',
+			'https://www.google.de/images/nav_logo242.png',
+			false,
+		],
+		[
+			'Preferences',
+			'https://www.google.de/preferences?hl=de&prev=https://www.google.de/search?source',
+			true,
+		],
+		[
+			'Autocomplete',
+			'https://www.google.at/complete/search?q&cp=0&client=psy-ab&xssi=t&gs_ri=gws-wiz&hl=de&authuser=0&psi=',
+			true,
+		],
+		[
+			'Autocomplete False',
+			'https://www.google.at/completetest/testsearch?q',
+			false,
+		],
+		[
+			'Suggest Query',
+			'https://suggestqueries.google.com/complete/search?client=books&ds=bo&q=dfs&callback=_callbacks',
+			true,
+		],
+		[
+			'Maps',
+			'https://www.google.com/maps/vt/pb=!2!1',
+			false,
+		],
+		[
+			'Searchbox',
+			'https://www.google.com/images/searchbox_sprites283_hr.webp',
+			false,
+		],
+		[
+			'News', // Carries Search parameter in POST
+			'https://news.google.com/_/DotsSplashUi/data/batchexecute?rpcids=123&f.sid=123&bl=boq_dotssplashserver_20190208.02_p0&hl=en-US&gl=US&_reqid=123&rt=c',
+			true,
+		],
+		[
+			'Scholar',
+			'https://scholar.google.com/scholar?hl=en&as_sdt=0,5&q=asd&btnG=',
+			true,
+		],
+		[
+			'Scholar Complete',
+			'https://scholar.google.com.bd/scholar_complete?q=asd&hl=en&as_sdt=0,5&btnG=',
+			true,
+		],
+		[
+			'Scholar False',
+			'https://scholar.google.de/gen_nid',
+			false,
+		],
+		[
+			'Account',
+			'https://myaccount.google.com/?pli=1',
+			false,
+		],
+		[
+			'Mail',
+			'https://mail.google.com/mail/u/2',
+			false,
+		],
+		[
+			'Youtube',
+			'https://www.youtube.com/',
+			false,
+		],
+		[
+			'Webmaster Tools',
+			'https://www.google.com/webmasters/tools/home?hl=de',
+			false,
+		],
+		[
+			'Webmaster Tools Search',
+			'https://search.google.com/_/SearchConsoleAggReportUi/mutate?ds.extension=123&sid=123',
+			false,
+		],
+	];
+	
+	for(let test of tests) {
+		it(test[0], () => {
+			assert.equal(searchonymous.isSearchUrl(test[1]), test[2]);
+		})
+	};
+});

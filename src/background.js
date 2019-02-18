@@ -102,56 +102,124 @@ function getHeader(headers, name) {
 }
 
 /* URLs */
-// If URL considered a Google search URL
+// If URL considered a Google search URL. The rules are too complex for a single regex.
 function isSearchUrl(url) {
-	// Check blacklist
-	if(!isBlacklisted(url)) {
+	// Split URL components
+	let c = splitUrlComponents(url);
+	if(c === false) {
+		// No Google domain
 		return false;
 	}
 
-	// Check whitelist
-	if(isWhitelisted(url)) {
+	// Check subdomains
+	if(![
+		'',
+		'www',
+		'images',
+		'suggestqueries',
+		'search',
+		'encrypted',
+		'news',
+		'video',
+		'books',
+		'scholar',
+	].includes(c.subdomain)) {
 		return false;
 	}
-	return true;
-}
 
-// Is blacklisted URL?
-let urlBlacklist = [
-	//Google search page
-	/^https?:\/\/((search|www|encrypted)\.)?google\./i,
+	// Remove trailing slash
+	let path = c.path;
+	if(path.endsWith('/')) {
+		path = path.substr(0, path.length-1);
+	}
 
-	//Google autocomplete
-	/^https?:\/\/((search|www|encrypted)\.)?google\.[^\/]+\/complete\/.*$/i,
-];
-function isBlacklisted(url) {
-	return testRegexAry(urlBlacklist, url);
-}
+	// Check first components
+	let firstComp = getFirstPart(path, '/');
+	if([
+		'', // Homepage
+		'webhp', // Homepage
+		'preferences', // Block for search settings to not get influenced by account settings
+		'complete', // Autocomplete
+	].includes(firstComp)) {
+		return true;
+	}
 
-// Is whitelisted URL?
-let urlWhitelist = [
-	// Google Voice
-	/^https?:\/\/www\.google\.[a-z]*?\/voice/i,
+	// Check last component
+	let lastComp = getLastPart(path, '/');
+	if(lastComp == 'search') {
+		return true;
+	}
 
-	// Google Maps
-	/^https?:\/\/www\.google\.[a-z]*?\/maps/i,
-	/^https?:\/\/www\.google\.[a-z]*?\/s\?tbm=map/i,
-];
-function isWhitelisted(url) {
-	return testRegexAry(urlWhitelist, url);
-}
+	// Google News
+	if(c.subdomain == 'news') {
+		if(lastComp == 'batchexecute') {
+			return true;
+		}
+	}
 
-// Test regex array on given string
-function testRegexAry(ary, string) {
-	for(let pattern of ary) {
-		if(pattern.test(string)) {
+	// Google Scholar
+	if(c.subdomain == 'scholar') {
+		if([
+			'scholar',
+			'scholar_complete',
+		].includes(lastComp)) {
 			return true;
 		}
 	}
 	return false;
 }
 
+// getFirstPart and getLastPart perform better than str.split()...
+function getFirstPart(str, sep) {
+	let i = str.indexOf(sep);
+	if(i === -1) {
+		return str
+	}
+	return str.substr(0, i);
+}
+
+function getLastPart(str, sep) {
+	let i = str.lastIndexOf(sep);
+	if(i === -1) {
+		return str
+	}
+	return str.substr(i+1);
+}
+
+// Splits an URL into subdomain, path and search query components. Only handles Google domains. The
+// leading slash for path and question mark for query string are omitted. All returned components
+// are in lowercase.
+function splitUrlComponents(url) {
+	url = url.toLowerCase();
+
+	// Regex: https://regex101.com/r/xArIzJ/6
+	let re = /^https?:\/\/(?:([a-z]+)\.)?google\.(?:[a-z.]+)\/?(.*?)$/;
+	let m = re.exec(url);
+	if(m === null) {
+		return false;
+	}
+
+	// Split path and query string
+	let path = '';
+	let query = '';
+	let pathquery = m[2];
+	let i = pathquery.indexOf('?');
+	if(i === -1) {
+		path = pathquery;
+	} else {
+		path = pathquery.substr(0, i);
+		query = pathquery.substr(i+1);
+	}
+
+	return {
+		subdomain: m[1] === undefined ? '' : m[1],
+		path: path,
+		query: query,
+	};
+}
+
 // Make functions available for tests
 if(typeof(module) !== 'undefined') {
 	module.exports.getWhitelistedCookies = getWhitelistedCookies;
+	module.exports.isSearchUrl = isSearchUrl;
 }
