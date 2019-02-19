@@ -47,7 +47,6 @@ function start() {
 					'sub_frame',
 					'script',
 					'xmlhttprequest',
-					'speculative',
 				],
 			},
 			extraInfoSpec,
