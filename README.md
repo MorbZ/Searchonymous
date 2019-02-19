@@ -1,14 +1,16 @@
 # Searchonymous
 
-![Travis Build](https://api.travis-ci.org/MorbZ/Searchonymous.svg?branch=master) 
+![Travis Build](https://api.travis-ci.org/MorbZ/Searchonymous.svg?branch=master)
 
-Searchonymous helps to prevent your Google searches from tracking by Google or intelligence. When installed no tracking cookies are sent to Google while searching. You will stay logged in on other Google services such as Youtube or Gmail. It also removes privacy and cookie hints from the Google search page since those would pop up on every page visit otherwise.
+Searchonymous helps to keep your Google searches private: When installed no tracking cookies are sent to Google while searching. That way Google will not be able to connect searches with your account or create a search history. Also you will not receive customized search results.
 
-In previous versions it was possible to keep your search settings when using this addon. However, Google changed their method of saving the settings. This means it is no longer possible to keep your search settings while beeing anonymized.
+When the add-on is active it seems to Google that are logged out of your Google account during searches (see the the "Sign in" button at the top right). However you stay logged in on other Google services such as Youtube or Gmail.
 
-Please note that even if no tracking cookies are sent the NSA can possibly try other techniques to track you (e.g. by IP or browser headers) but these are not as accurate as tracking IDs that are sent on every search.
+If you want to change your Google search settings, make sure to allow the "Search Preferences Cookie" in the add-on settings. By default the preferences-cookie will be blocked which effectively discards any changes to your search settings.
 
-Feel free to help localize the addon by adding a file to the /lang/ directory.
+Please note that there are other means of tracking this add-on can't protect you against, such as using your IP address or browser fingerprint.
+
+**Feel free to help localize the add-on by adding files to the /lang/ and /src/_locales directory.**
 
 ## Download ##
 * [Searchonymous for Firefox](https://addons.mozilla.org/firefox/addon/searchonymous/)

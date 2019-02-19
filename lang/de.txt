@@ -1,8 +1,7 @@
-Suche anonym auf Google während du weiterhin bei Youtube, Gmail, usw. eingeloggt bleibst.
+Searchonymous hilft dir, deine Google-Suchen privat zu halten: Wenn installiert, werden bei der Suche keine Tracking-Cookies an Google gesendet. Auf diese Weise kann Google keine Suchanfragen mit deinem Konto verbinden oder einen Suchverlauf erstellen. Außerdem erhälst du keine individuellen Suchergebnisse.
 
+Wenn das Add-on aktiv ist, scheint es Google, dass du während der Suche von deinem Google-Account abgemeldet bist (siehe den "Anmelden"-Button oben rechts). Du bleibst jedoch bei anderen Google-Diensten wie Youtube oder Google Mail angemeldet.
 
-Searchonymous hilft dir dabei zu verhindern, dass deine Google Suchen von Google oder Geheimdiensten getrackt werden können. Wenn es installiert ist werden beim Suchen keine Tracking-Cookies mehr an Google gesendet. Du wirst weiterhin auf anderen Google Services wie Youtube oder Gmail eingeloggt bleiben. Außerdem werden die Datenschutz- und Cookie-Hinweise von der Google Such-Seite entfernt, denn diese würden sonst bei jedem Seitenaufruf wieder angezeigt werden.
+Wenn du die Google Sucheinstellungen ändern möchtest, stelle sicher, dass in den Add-On-Einstellungen das "Search Preferences Cookie" erlaubt ist. Standardmäßig wird dieser Cookie blockiert, wodurch Änderungen an deinen Sucheinstellungen verworfen werden.
 
-In vorherigen Versionen war es möglich die Such-Einstellungen beizuhalten wenn dieses Addon benutzt wurde. Google hat allerdings die Art geändert wie Such-Einstellungen gespeichert werden. Daher ist es jetzt nicht mehr möglich die Such-Einstellungen beizubehalten wenn man anonym sucht.
-
-Bitte beachte, dass die NSA dich möglicherweise auch mit anderen Methoden tracken kann, auch wenn Tracking-Cookies geblockt werden (z.B. mit IP oder Browser-Headern), aber diese Methoden sind nicht so genau wie Tracking-IDs, die bei jeder Suche mitgeschickt werden.
+Bitte beachte, dass es andere Möglichkeiten des Trackings gibt, gegen die dich dieses Add-on nicht schützen kann, wie z.B. die Verwendung der IP-Adresse oder des Browser-Fingerabdrucks.
