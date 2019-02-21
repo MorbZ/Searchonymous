@@ -1,6 +1,6 @@
 # Searchonymous
 
-![Travis Build](https://api.travis-ci.org/MorbZ/Searchonymous.svg?branch=master)
+[![Build Status](https://travis-ci.org/MorbZ/Searchonymous.svg?branch=master)](https://travis-ci.org/MorbZ/Searchonymous)
 
 Searchonymous helps to keep your Google searches private: When installed no tracking cookies are sent to Google while searching. That way Google will not be able to connect searches with your account or create a search history. Also you will not receive customized search results.
 

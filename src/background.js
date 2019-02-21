@@ -150,7 +150,7 @@ function isSearchUrl(url) {
 		return true;
 	}
 
-	// Check last component
+	// Check search
 	let lastComp = getLastPart(path, '/');
 	if(lastComp == 'search') {
 		return true;
