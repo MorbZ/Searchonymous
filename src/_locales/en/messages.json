@@ -9,7 +9,7 @@
 		"message": "Search Preferences Cookie"
 	},
 	"optionsPreferencesCookieDescription": {
-		"message": "The \"NID\"-cookie is according to Google's <a href=\"$1\">privacy policy</a> only used to store your search preferences. However as it carries a unique ID it is technically possible for Google to track your searches. You may want to allow this cookie if you change your search settings."
+		"message": "The \"NID\"-cookie is according to Google's [privacy policy](https://policies.google.com/technologies/types) only used to store your search preferences. However as it carries a unique ID it is technically possible for Google to track your searches. You may want to allow this cookie if you change your search settings."
 	},
 	"optionsConsentCookie": {
 		"message": "Consent Cookie"
