@@ -10,7 +10,7 @@ If you want to change your Google search settings, make sure to allow the "Searc
 
 Please note that there are other means of tracking this add-on can't protect you against, such as using your IP address or browser fingerprint.
 
-**Feel free to help localize the add-on by adding files to the /lang/ and /src/_locales directory.**
+**[Help translate Searchonymous](https://poeditor.com/join/project/wbV4rQtHoY)**
 
 ## Download ##
 * [Searchonymous for Firefox](https://addons.mozilla.org/firefox/addon/searchonymous/)

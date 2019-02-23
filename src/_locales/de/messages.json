@@ -1,5 +1,26 @@
 {
 	"appDesc": {
 		"message": "Hindert Google daran, deine Suchanfragen zu verfolgen."
+	},
+	"optionsHeader": {
+		"message": "Du kannst Searchonymous erlauben bestimmte Cookies an Google Suchanfragen zu senden, um deine Nutzererfahrung zu verbessern. Cookies, die deine Account-Informationen enthalten, werden von Searchonymous immer blockiert."
+	},
+	"optionsPreferencesCookie": {
+		"message": "Sucheinstellungen Cookie"
+	},
+	"optionsPreferencesCookieDescription": {
+		"message": "Der \"NID\"-Cookie wird laut Googles <a href=\"$1\">Datenschutzerklärung</a> nur dazu verwendet die Sucheinstellungen zu speichern. Da der Cookie jedoch eine eindeutige ID trägt, ist es für Google damit technisch möglich deine Suchen zu verfolgen. Wenn du deine Sucheinstellungen ändern möchtest, solltest du diesen Cookie erlauben."
+	},
+	"optionsConsentCookie": {
+		"message": "Einverständnis Cookie"
+	},
+	"optionsConsentCookieDescription": {
+		"message": "Der \"Consent\"-Cookie enthält Informationen darüber, ob du Googles (Datenschutz-)Bestimmungen akzeptiert hast. In einigen Regionen wird eine große Meldung auf der Google-Suchseite angezeigt, wenn dieser Cookie nicht gesendet wird. Da der Cookie keine eindeutige ID trägt, kann er als harmlos angesehen werden was das Tracking betrifft."
+	},
+	"optionsAllow": {
+		"message": "Erlauben"
+	},
+	"optionsBlock": {
+		"message": "Blockieren"
 	}
 }
