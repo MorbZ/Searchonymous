@@ -5,6 +5,11 @@
 	"description": "__MSG_appDesc__",
 	"default_locale": "en",
 	"homepage_url": "https://github.com/MorbZ/Searchonymous",
+	"applications": {
+		"gecko": {
+			"id": "jid1-WF1v8esuNM9pRg@jetpack"
+		}
+	},
 	"icons": {
 		"128": "icon128.png"
 	},
