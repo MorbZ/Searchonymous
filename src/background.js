@@ -22,8 +22,8 @@ function start() {
 		}
 		chrome.webRequest.onBeforeSendHeaders.addListener(
 			(details) => {
-				// Check if Google search URL
-				if(!isSearchUrl(details.url)) {
+				// Check if search request
+				if(!isSearchRequest(details)) {
 					return;
 				}
 
@@ -42,12 +42,6 @@ function start() {
 			},
 			{
 				urls: ['<all_urls>'],
-				types: [
-					'main_frame',
-					'sub_frame',
-					'script',
-					'xmlhttprequest',
-				],
 			},
 			extraInfoSpec,
 		);
@@ -108,6 +102,18 @@ function getHeader(headers, name) {
 }
 
 /* URLs */
+function isSearchRequest(details) {
+	// Block all requests made from a search page. Currently only works in Firefox.
+	if(details.documentUrl !== undefined) {
+		if(isSearchUrl(details.documentUrl)) {
+			return true;
+		}
+	}
+
+	// Check for search URL
+	return isSearchUrl(details.url);
+}
+
 // If URL considered a Google search URL. The rules are too complex for a single regex.
 function isSearchUrl(url) {
 	// Split URL components
@@ -145,7 +151,10 @@ function isSearchUrl(url) {
 		'', // Homepage
 		'webhp', // Homepage
 		'preferences', // Block for search settings to not get influenced by account settings
+		'setprefs',
 		'complete', // Autocomplete
+		'gen_204', // Tracker, sends ei
+		'client_204', // Tracker, sends ei
 	].includes(firstComp)) {
 		return true;
 	}
@@ -154,6 +163,17 @@ function isSearchUrl(url) {
 	let lastComp = getLastPart(path, '/');
 	if(lastComp == 'search') {
 		return true;
+	}
+
+	// Async
+	if(firstComp == 'async') {
+		if([
+			'irc', // Sends query
+			'ecr', // Sends ei
+			'bgasy', // Sends ei
+		].includes(lastComp)) {
+			return true;
+		}
 	}
 
 	// Google News
@@ -171,11 +191,6 @@ function isSearchUrl(url) {
 		].includes(lastComp)) {
 			return true;
 		}
-	}
-
-	// Async
-	if(firstComp == 'async' && lastComp == 'irc') {
-		return true;
 	}
 	return false;
 }

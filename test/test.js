@@ -127,6 +127,11 @@ describe('Google search URL', () => {
 			true,
 		],
 		[
+			'Set Preferences',
+			'https://www.google.com/setprefs?sig=123=&submit2=Save+Preferences&hl=en&lang=en&lr=lang_en&safeui=images&num=30',
+			true,
+		],
+		[
 			'Autocomplete',
 			'https://www.google.at/complete/search?q&cp=0&client=psy-ab&xssi=t&gs_ri=gws-wiz&hl=de&authuser=0&psi=',
 			true,
@@ -197,8 +202,33 @@ describe('Google search URL', () => {
 			false,
 		],
 		[
-			'Async',
+			'XHR Async irc',
 			'https://www.google.com/async/irc?q=asdd&async=iu:0,_id:irc_async,_pms:s,_fmt:pc',
+			true,
+		],
+		[
+			'XHR Async bgasy',
+			'https://www.google.com/async/bgasy?ei=abc&yv=3&async=_fmt:jspb',
+			true,
+		],
+		[
+			'XHR Async ecr',
+			'https://www.google.com/async/ecr?ei=abc&lei=123&yv=3&async=encoded_cache_key:abc,version_info:123,attempt:1,_fmt:jspb',
+			true,
+		],
+		[
+			'XHR Async False',
+			'https://www.google.com/async/test?123',
+			false,
+		],
+		[
+			'XHR gen_204',
+			'https://www.google.com/gen_204?s=web&t=aft&atyp=csi&ei=abc',
+			true,
+		],
+		[
+			'XHR client_204',
+			'https://www.google.com/client_204?&atyp=i&biw=123&bih=123&ei=abc',
 			true,
 		],
 	];
