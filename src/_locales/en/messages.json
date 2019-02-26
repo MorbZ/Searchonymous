@@ -5,16 +5,16 @@
 	"optionsHeader": {
 		"message": "You may allow Searchonymous to send specific cookies to Google searches in order to improve your user experience. Cookies that carry your account information will always be blocked by Searchonymous."
 	},
-	"optionsPreferencesCookie": {
+	"preferencesCookieName": {
 		"message": "Search Preferences Cookie"
 	},
-	"optionsPreferencesCookieDescription": {
+	"preferencesCookieDescription": {
 		"message": "The \"NID\"-cookie is according to Google's [privacy policy](https://policies.google.com/technologies/types) only used to store your search preferences. However as it carries a unique ID it is technically possible for Google to track your searches. You may want to allow this cookie if you change your search settings."
 	},
-	"optionsConsentCookie": {
+	"consentCookieName": {
 		"message": "Consent Cookie"
 	},
-	"optionsConsentCookieDescription": {
+	"consentCookieDescription": {
 		"message": "The consent cookie stores information of whether you accepted Google's (privacy) policies. In some regions a large message box will be shown on the Google search page if this cookie is not set. This cookie doesn't carry a unique ID and is therefore harmless in regards of tracking."
 	},
 	"optionsAllow": {

@@ -2,27 +2,33 @@ body {
 	font-family: sans-serif;
 }
 
-div.wrapper {
-	padding: 10px 20px;
-}
-
 p.header {
 	font-weight: bold;
 	font-size: 1.2em;
 }
 
 div.option {
-	border: 1px solid #b9b1b1;
-	border-radius: 4px;
-	padding: 20px;
+	border: 1px solid rgba(12, 12, 13, 0.3);
+	border-radius: 2px;
+	padding: 15px 20px;
 	margin-bottom: 10px;
 }
 
 h2 {
-	margin-top: 0;
+	margin: 0;
+	margin-bottom: 3px;
+	font-weight: normal;
+	display: inline;
+}
+
+span.info {
+	font-size: 0.9em;
+	color: #888;
+	float: right;
 }
 
 label {
 	font-weight: bold;
 	font-size: 1.1em;
+	margin-right: 10px;
 }

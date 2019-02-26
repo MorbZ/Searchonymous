@@ -49,19 +49,14 @@ function start() {
 };
 
 /* Settings */
-let cookieSettingNames = [
-	['allowNid', 'NID'],
-	['allowConsent', 'CONSENT'],
-];
-
-// Load whitelist from storage
+// Generate whitelist from storage
 function getWhitelist(callback) {
 	let settings = new Settings();
 	settings.load(() => {
 		let whitelist = [];
-		for(const [setting, cookie] of cookieSettingNames) {
-			if(settings.get(setting) == 1) {
-				whitelist.push(cookie);
+		for(let [name, cookie] of settings.getAll()) {
+			if(cookie.value == 1) {
+				whitelist.push(cookie.name);
 			}
 		}
 		callback(whitelist);

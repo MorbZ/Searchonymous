@@ -16,19 +16,68 @@ ready(() => {
 function initOptions() {
 	let settings = new Settings();
 	settings.load(() => {
-		// Set values for radio buttons
-		for(const [name, value] of settings.getAll()) {
-			let radios = document.getElementsByName(name);
-			for(let radio of radios) {
-				// Set checked
-				if(radio.value == value) {
+		// Create cookie option boxes
+		let wrapper = document.querySelector('.wrapper');
+		for(let [name, cookie] of settings.getAll()) {
+			/*
+			Template:
+			<div class="option">
+				<span>{Cookie}</span>
+				<h2>{Name}</h2>
+				<p>{Description}</p>
+
+				<label><input type="radio" name="{ID}" value="1"> <span class="allow">{Allow}</span></label>
+				<label><input type="radio" name="{ID}" value="0"> <span class="block">{Block}</span></label>
+			</div>
+			*/
+
+			// Box
+			let div = document.createElement('div');
+			div.classList.add('option');
+			wrapper.appendChild(div);
+
+			// Cookie name
+			let span = document.createElement('span');
+			span.classList.add('info');
+			appendText(span, `Name: ${cookie.name}`);
+			div.appendChild(span);
+
+			// Title
+			let h2 = document.createElement('h2');
+			appendLocaleText(h2, cookie.locale+'Name');
+			div.appendChild(h2);
+
+			// Description
+			let p = document.createElement('p');
+			appendLocaleText(p, cookie.locale+'Description');
+			div.appendChild(p);
+
+			// Radio buttons
+			for(let button of [
+				[1, 'allow', 'optionsAllow'],
+				[0, 'block', 'optionsBlock'],
+			]) {
+				// Label
+				let label = document.createElement('label');
+				div.appendChild(label);
+
+				// Radio button
+				let value = button[0];
+				let radio = document.createElement('input');
+				radio.type = 'radio';
+				radio.value = value;
+				radio.name = name;
+				if(cookie.value == value) {
 					radio.checked = true;
 				}
-
-				// Register change event
 				radio.addEventListener('change', () => {
-					settings.set(radio.name, radio.value);
+					settings.update(name, value);
 				});
+				label.appendChild(radio);
+
+				// Text
+				appendText(label, ' ');
+				appendLocaleText(label, button[2]);
 			}
 		}
 	});
@@ -39,26 +88,20 @@ function localize() {
 	for(let loc of [
 		// [selector, message name]
 		['p.header', 'optionsHeader'],
-		['span.allow', 'optionsAllow'],
-		['span.block', 'optionsBlock'],
-		['div.preferencesCookie > h2', 'optionsPreferencesCookie'],
-		['div.preferencesCookie > p', 'optionsPreferencesCookieDescription'],
-		['div.consentCookie > h2', 'optionsConsentCookie'],
-		['div.consentCookie > p', 'optionsConsentCookieDescription'],
 	]) {
-		// Get localized string
-		let message = chrome.i18n.getMessage(loc[1]);
-
-		// Apply string to elements
+		// Apply locale messages to elements
 		for(let elem of document.querySelectorAll(loc[0])) {
-			appendLinkText(elem, message);
+			appendLocaleText(elem, loc[1]);
 		}
 	}
 }
 
 // Avoid unsafe assignment to innerHTML by manually creating DOM elements.
 // Uses Markdown syntax for replacing "[name](url)" with a HTML link.
-function appendLinkText(elem, str) {
+function appendLocaleText(elem, name) {
+	// Get message
+	let str = chrome.i18n.getMessage(name);
+
 	// Regex: https://regex101.com/r/214K89/2
 	let re = /\[(.*?)\]\((.*?)\)/g;
 	let i = 0;
