@@ -17,6 +17,12 @@
 	"consentCookieDescription": {
 		"message": "The consent cookie stores information of whether you accepted Google's (privacy) policies. In some regions a large message box will be shown on the Google search page if this cookie is not set. This cookie doesn't carry a unique ID and is therefore harmless in regards of tracking."
 	},
+	"captchaCookieName": {
+		"message": "Captcha Cookie"
+	},
+	"captchaCookieDescription": {
+		"message": "Under certain circumstances a CAPTCHA has to be solved in order to continue searching on Google. This Cookie saves if a CAPTCHA has successfully been solved. Since the cookie is short lived and not too common it is recommended to allow it."
+	},
 	"optionsAllow": {
 		"message": "Allow"
 	},

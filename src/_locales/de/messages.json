@@ -17,6 +17,12 @@
 	"consentCookieDescription": {
 		"message": "Der \"Consent\"-Cookie enthält Informationen darüber, ob du Googles (Datenschutz-)Bestimmungen akzeptiert hast. In einigen Regionen wird eine große Meldung auf der Google-Suchseite angezeigt, wenn dieser Cookie nicht gesendet wird. Da der Cookie keine eindeutige ID trägt, kann er als harmlos angesehen werden was das Tracking betrifft."
 	},
+	"captchaCookieName": {
+		"message": "Captcha Cookie"
+	},
+	"captchaCookieDescription": {
+		"message": "Unter bestimmten Umständen muss ein Captcha gelöst werden, um weiter bei Google suchen zu können. Dieser Cookie speichert das erfolgreiche Lösen eines Captchas. Da der Cookie eine kurze Lebensdauer hat und nicht oft vorkommt, wird empfohlen ihn zu erlauben."
+	},
 	"optionsAllow": {
 		"message": "Erlauben"
 	},

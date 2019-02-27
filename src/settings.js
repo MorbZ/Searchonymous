@@ -20,6 +20,14 @@ class Settings {
 					value: 1,
 				},
 			],
+			[
+				'allowAbuseExemption',
+				{
+					locale: 'captchaCookie',
+					name: 'GOOGLE_ABUSE_EXEMPTION',
+					value: 1,
+				}
+			],
 		]);
 	}
 

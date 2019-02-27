@@ -2,6 +2,6 @@ Searchonymous hilft dir, deine Google-Suchen privat zu halten: Wenn installiert,
 
 Wenn das Add-on aktiv ist, scheint es Google, dass du während der Suche von deinem Google-Account abgemeldet bist (siehe den "Anmelden"-Button oben rechts). Du bleibst jedoch bei anderen Google-Diensten wie Youtube oder Google Mail angemeldet.
 
-Wenn du die Google Sucheinstellungen ändern möchtest, stelle sicher, dass in den Add-On-Einstellungen das "Search Preferences Cookie" erlaubt ist. Standardmäßig wird dieser Cookie blockiert, wodurch Änderungen an deinen Sucheinstellungen verworfen werden.
+Wenn du die Google Sucheinstellungen ändern möchtest, stelle sicher, dass in den Add-On-Einstellungen der "Sucheinstellungen Cookie" erlaubt ist. Standardmäßig wird dieser Cookie blockiert, wodurch Änderungen an deinen Sucheinstellungen verworfen werden.
 
 Bitte beachte, dass es andere Möglichkeiten des Trackings gibt, gegen die dich dieses Add-on nicht schützen kann, wie z.B. die Verwendung der IP-Adresse oder des Browser-Fingerabdrucks.
