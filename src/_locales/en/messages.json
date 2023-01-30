@@ -23,6 +23,12 @@
 	"captchaCookieDescription": {
 		"message": "Under certain circumstances a CAPTCHA has to be solved in order to continue searching on Google. This Cookie saves if a CAPTCHA has successfully been solved. Since the cookie is short lived and not too common it is recommended to allow it."
 	},
+	"cookieChoicesCookieName": {
+		"message": "Cookie Choices Cookie"
+	},
+	"cookieChoicesCookieDescription": {
+		"message": "Store a user’s state regarding their cookies choices."
+	},
 	"optionsAllow": {
 		"message": "Allow"
 	},
