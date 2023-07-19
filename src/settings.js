@@ -28,6 +28,14 @@ class Settings {
 					value: 1,
 				}
 			],
+			[
+				'allowCookieChoices',
+				{
+					locale: 'cookieChoicesCookie',
+					name: 'SOCS',
+					value: 1,
+				}
+			]
 		]);
 	}
 
