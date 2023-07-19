@@ -27,7 +27,7 @@
 		"message": "Cookie Auswahl Cookie"
 	},
 	"cookieChoicesCookieDescription": {
-		"message": "Speichern Sie den Zustand eines Benutzers bezüglich seiner Cookie-Auswahl."
+		"message": "Speichert welche Cookies erlaubt wurden."
 	},
 	"optionsAllow": {
 		"message": "Erlauben"
